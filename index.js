@@ -6,23 +6,25 @@ const main = async() => {
         const userInput = readlineSync.question("You: ");
 
         try {
+            // Call the API with user input
+            const completion = await openai.createChatCompletion({
+                model: 'gpt-3.5-turbo',
+                messages: [{ role: 'user', content: userInput }]
+            });
+            
+            // Get completion text/content
+            const completionText = completion.data.choices[0].message.content;
+
             if (userInput.toLowerCase() === "exit") {
+                console.log("Bot: " + completionText);
                 return;
             }
+
+            console.log("Bot: " + completionText);
         } catch (error) {
             console.log(error);
         }
     }
-    // const userName = readlineSync.question("Create a username: ");
-    // console.log(`Hey ${userName}`);
-    
-    // const chatCompletion = await openai.createChatCompletion({
-    //     model: 'gpt-3.5-turbo',
-    //     messages: [
-    //         { role: 'user', content: 'What is the capital of United Arab Emirates?' }
-    //     ]
-    // });
-    // console.log(chatCompletion.data.choices[0].message.content);
 }
 
 main();
