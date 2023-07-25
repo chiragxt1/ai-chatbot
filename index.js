@@ -1,12 +1,4 @@
-import { Configuration, OpenAIApi } from "openai";
-import dotenv from "dotenv";
-dotenv.config();
-
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY
-});
-
-const openai = new OpenAIApi(configuration);
+import openai from "./config/open-ai.js";
 
 const main = async() => {
     const chatCompletion = await openai.createChatCompletion({
