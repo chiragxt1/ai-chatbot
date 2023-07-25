@@ -30,6 +30,10 @@ const main = async() => {
             }
 
             console.log("Bot: " + completionText);
+
+            // Update hisotry with user input and assistant response
+            chatHistory.push(['user', userInput]);
+            chatHistory.push(['assistant', completionText]);
         } catch (error) {
             console.log(error);
         }
